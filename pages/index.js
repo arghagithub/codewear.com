@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -16,7 +14,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      
       {/* <img src="/coder.avif" alt="" style={{height:'80vh',width:'100vw'}}/> */}
       <div id="carouselExampleFade" className="carousel slide carousel-fade">
         <div className="carousel-inner">
@@ -122,8 +120,6 @@ export default function Home() {
           {/* <button class="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">Button</button> */}
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

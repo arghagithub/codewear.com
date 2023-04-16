@@ -12,10 +12,10 @@ const Footer = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
                                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                                 </svg>
-                                <span className="ml-3 text-xl">CodesWear</span>
+                                <span className="ml-3 text-xl text-center">CodesWear</span>
                             </span>
                         </Link>
-                        <p className="mt-2 text-sm text-gray-500">Air plant banjo lyft occupy retro adaptogen indego</p>
+                        <p className="mt-2 text-sm text-gray-500 text-center">Air plant banjo lyft occupy retro adaptogen indego</p>
                     </div>
                     <div className="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -90,8 +90,8 @@ const Footer = () => {
                 </div>
                 <div className="bg-gray-100">
                     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-                        <p className="text-gray-500 text-sm text-center sm:text-left">© 2020 CodesWear —
-                            <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" className="text-gray-600 ml-1" target="_blank">@knyttneve</a>
+                        <p className="text-gray-500 text-sm text-center sm:text-left">© 2023 CodesWear —
+                            <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" className="text-gray-600 ml-1" target="_blank" style={{textDecoration:'none'}}>arghagolui2001@gmail.com</a>
                         </p>
                         <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
                             <a className="text-gray-500">

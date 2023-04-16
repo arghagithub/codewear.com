@@ -2,8 +2,8 @@ import Image from 'next/image'
 import React, { useRef } from 'react'
 import Link from 'next/link';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { AiFillCloseCircle,AiOutlinePlusCircle,AiOutlineMinusCircle } from 'react-icons/ai';
-import {MdOutlineShoppingCartCheckout} from 'react-icons/md';
+import { AiFillCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineClear } from 'react-icons/ai';
+import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
 
 const Navbar = () => {
     const ref = useRef();
@@ -46,29 +46,32 @@ const Navbar = () => {
                     <li>
                         <div className="ietm flex justify-center">
                             <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex  items-center  justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold'/> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
+                            <div className='w-1/3 font-bold flex  items-center  justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
                         </div>
                     </li>
                     <li>
                         <div className="ietm flex">
                             <div className='w-2/3 text-left px-1 text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex  items-center justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold'/> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
+                            <div className='w-1/3 font-bold flex  items-center justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
                         </div>
                     </li>
                     <li>
                         <div className="ietm flex">
                             <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex  items-center justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold'/> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
+                            <div className='w-1/3 font-bold flex  items-center justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
                         </div>
                     </li>
                     <li>
                         <div className="ietm flex">
                             <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex items-center  justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold'/> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
+                            <div className='w-1/3 font-bold flex items-center  justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
                         </div>
                     </li>
                 </ol>
-                <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='m-[6px]'/>Checkout</button>
+                <div className="flex">
+                    <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='mt-[4px] mr-[6px]' />Checkout</button>
+                    <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <AiOutlineClear className='mr-[6px] mt-[4px]' />Clear cart</button>
+                </div>
             </div>
 
         </div>

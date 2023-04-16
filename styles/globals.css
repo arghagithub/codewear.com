@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-p{
-    margin-bottom: 0;
+body{
+    overflow-x: hidden;
 }

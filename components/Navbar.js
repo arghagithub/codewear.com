@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Link from 'next/link';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiFillCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineClear } from 'react-icons/ai';
@@ -19,7 +19,7 @@ const Navbar = (props) => {
         }
     }
     return (
-        <div className='flex flex-col items-center justify-center md:flex-row md:justify-start shadow-xl'>
+        <div className='flex flex-col items-center justify-center md:flex-row md:justify-start shadow-xl sticky top-0 z-10 bg-white'>
             <div className="logo mx-2">
                 <Link href={'/'} ><Image
                     src="/logo.png"
@@ -40,12 +40,12 @@ const Navbar = (props) => {
                 <button type="button" className="text-xl mx-2 md:text-4xl"><AiOutlineShoppingCart /></button>
             </div>
 
-            <div ref={ref} className="sidecart w-72 h-full absolute top-0 right-0 p-6 bg-pink-100 z-10 transform translate-x-full transition-transform">
+            <div ref={ref} className={`sidecart w-72 h-[100vh] absolute top-0 right-0 p-6 bg-pink-100 z-20 transform ${Object.keys(cart).length !==0 ?'translate-x-0':'translate-x-full'} transition-transform`}>
                 <h2 className="text-xl font-bold text-center">Your Cart</h2>
                 <span onClick={togglecart} className="top-2 right-2 absolute cursor-pointer text-3xl text-pink-800"><AiFillCloseCircle /></span>
                 <ol className='list-decimal space-y-4 mt-3'>
                     {
-                        (Object.keys(cart).length===0) && <div className='mt-3 ml-5 font-semibold'>No items in the cart</div>
+                        (Object.keys(cart).length === 0) && <div className='mt-3 ml-5 font-semibold'>No items in the cart</div>
                     }
                     {
                         Object.keys(cart).map((item, index) => {
@@ -53,7 +53,7 @@ const Navbar = (props) => {
                                 <li key={index}>
                                     <div className="ietm flex justify-center">
                                         <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>{cart[item].name} : </div>
-                                        <div className='w-1/3 font-bold flex  items-center  justify-center' ><AiOutlineMinusCircle onClick={()=>{removefromcart(item,1,cart[item].price,cart[item].name,cart[item].size,cart[item].variant)}} className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> {cart[item].qty} <AiOutlinePlusCircle onClick={()=>{addtocart(item,1,cart[item].price,cart[item].name,cart[item].size,cart[item].variant)}} className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
+                                        <div className='w-1/3 font-bold flex  items-center  justify-center' ><AiOutlineMinusCircle onClick={() => { removefromcart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> {cart[item].qty} <AiOutlinePlusCircle onClick={() => { addtocart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
                                     </div>
                                 </li>
                             )
@@ -79,8 +79,11 @@ const Navbar = (props) => {
                         </div>
                     </li> */}
                 </ol>
-                <div className="flex">
-                    <button className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='mt-[4px] mr-[6px]' />Checkout</button>
+                <div className='text-center'>
+                    <span className="total mt-6 font-bold">Subtotal:&nbsp;&nbsp;{subtotal}</span>
+                </div>
+                <div className="flex justify-center ml-5">
+                    <Link style={{ textDecoration: 'none' }} href={'/Check'}><button className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='mt-[4px] mr-[6px]' />Checkout</button></Link>
                     <button onClick={clearcart} className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <AiOutlineClear className='mr-[6px] mt-[4px]' />Clear cart</button>
                 </div>
             </div>

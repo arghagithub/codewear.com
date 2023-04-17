@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }) {
     try {
       if (localStorage.getItem('cart')) {
         setCart(JSON.parse(localStorage.getItem('cart')));
+        savecart(JSON.parse(localStorage.getItem('cart')));
       }
     } catch (error) {
       console.log(error);

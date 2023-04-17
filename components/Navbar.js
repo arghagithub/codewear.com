@@ -6,7 +6,7 @@ import { AiFillCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutline
 import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
 
 const Navbar = (props) => {
-    const { cart, addtocart, removefromcart, savecart, clearcart, subtotal } = props;
+    const { cart, addtocart, removefromcart, clearcart, subtotal } = props;
     const ref = useRef();
     const togglecart = () => {
         if (ref.current.classList.contains('translate-x-full')) {

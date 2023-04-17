@@ -11,3 +11,9 @@ body{
         overflow-x: hidden;
     }
 }
+
+@media screen and (min-width:500px) and (max-width:1000px) {
+     .unique{
+        margin-right: 40px;
+     }
+}

@@ -5,7 +5,8 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiFillCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineClear } from 'react-icons/ai';
 import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const { cart, addtocart, removefromcart, savecart, clearcart, subtotal } = props;
     const ref = useRef();
     const togglecart = () => {
         if (ref.current.classList.contains('translate-x-full')) {
@@ -43,13 +44,23 @@ const Navbar = () => {
                 <h2 className="text-xl font-bold text-center">Your Cart</h2>
                 <span onClick={togglecart} className="top-2 right-2 absolute cursor-pointer text-3xl text-pink-800"><AiFillCloseCircle /></span>
                 <ol className='list-decimal space-y-4 mt-3'>
-                    <li>
-                        <div className="ietm flex justify-center">
-                            <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex  items-center  justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
-                        </div>
-                    </li>
-                    <li>
+                    {
+                        (Object.keys(cart).length===0) && <div className='mt-3 ml-5 font-semibold'>No items in the cart</div>
+                    }
+                    {
+                        Object.keys(cart).map((item, index) => {
+                            return (
+                                <li key={index}>
+                                    <div className="ietm flex justify-center">
+                                        <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>{cart[item].name} : </div>
+                                        <div className='w-1/3 font-bold flex  items-center  justify-center' ><AiOutlineMinusCircle onClick={()=>{removefromcart(item,1,cart[item].price,cart[item].name,cart[item].size,cart[item].variant)}} className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> {cart[item].qty} <AiOutlinePlusCircle onClick={()=>{addtocart(item,1,cart[item].price,cart[item].name,cart[item].size,cart[item].variant)}} className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
+                                    </div>
+                                </li>
+                            )
+                        })
+                    }
+
+                    {/* <li>
                         <div className="ietm flex">
                             <div className='w-2/3 text-left px-1 text-pink-800 font-bold'>T-shirts- Wear the code : </div>
                             <div className='w-1/3 font-bold flex  items-center justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
@@ -66,11 +77,11 @@ const Navbar = () => {
                             <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>T-shirts- Wear the code : </div>
                             <div className='w-1/3 font-bold flex items-center  justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
                         </div>
-                    </li>
+                    </li> */}
                 </ol>
                 <div className="flex">
-                    <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='mt-[4px] mr-[6px]' />Checkout</button>
-                    <button className="flex mx-auto mt-16 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <AiOutlineClear className='mr-[6px] mt-[4px]' />Clear cart</button>
+                    <button className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='mt-[4px] mr-[6px]' />Checkout</button>
+                    <button onClick={clearcart} className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <AiOutlineClear className='mr-[6px] mt-[4px]' />Clear cart</button>
                 </div>
             </div>
 

@@ -18,17 +18,17 @@ const Order = () => {
               <div className="flex border-t border-gray-200 py-2">
                 <span className="text-gray-500">Wear the code</span>
                 <span className="ml-auto text-gray-900">1</span>
-                <span className="ml-auto mr-4 md:mr-12 text-gray-900 tetx-center unique">499.00</span>
+                <span className="ml-auto mr-4 md:mr-10 text-gray-900 tetx-center unique">499.00</span>
               </div>
               <div className="flex border-t border-gray-200 py-2">
                 <span className="text-gray-500">Wear the code</span>
                 <span className="ml-auto text-gray-900">1</span>
-                <span className="ml-auto mr-4 md:mr-12 text-gray-900 tetx-center unique">499.00</span>
+                <span className="ml-auto mr-4 md:mr-10 text-gray-900 tetx-center unique">499.00</span>
               </div>
               <div className="flex border-t border-b mb-6 border-gray-200 py-2">
                 <span className="text-gray-500">Wear the code</span>
                 <span className="ml-auto text-gray-900">1</span>
-                <span className="ml-auto mr-4 md:mr-12 text-gray-900 tetx-center unique">499.00</span>
+                <span className="ml-auto mr-4 md:mr-10 text-gray-900 tetx-center unique">499.00</span>
               </div>
               <div className="flex">
                 <span className="title-font font-medium text-xl text-gray-900">Total: ₹ 1158.00</span>

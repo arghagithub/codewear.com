@@ -3,7 +3,8 @@ import React, { useEffect, useRef } from 'react'
 import Link from 'next/link';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiFillCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineClear } from 'react-icons/ai';
-import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
+import { MdOutlineShoppingCartCheckout, MdAccountCircle } from 'react-icons/md';
+
 
 const Navbar = (props) => {
     const { cart, addtocart, removefromcart, clearcart, subtotal } = props;
@@ -36,11 +37,12 @@ const Navbar = (props) => {
                     <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Mugs'}><li className='text-pink-600 text-sm md:text-md'>Mugs</li></Link>
                 </ul>
             </div>
-            <div onClick={togglecart} className="cart mx-1 mt-3 absolute top-0 right-1">
-                <button type="button" className="text-xl mx-2 md:text-4xl"><AiOutlineShoppingCart /></button>
+            <div className="cart mx-1 mt-3 absolute top-0 right-1">
+                <Link href={'/Login'}><button type="button" className="text-xl mx-2 md:text-4xl text-black"><MdAccountCircle /></button></Link>
+                <button onClick={togglecart} type="button" className="text-xl mx-2 md:text-4xl"><AiOutlineShoppingCart /></button>
             </div>
 
-            <div ref={ref} className={`sidecart w-72 h-[100vh] absolute top-0 right-0 p-6 bg-pink-100 z-20 transform ${Object.keys(cart).length !==0 ?'translate-x-0':'translate-x-full'} transition-transform`}>
+            <div ref={ref} className={`sidecart w-72 h-[100vh] absolute top-0 right-0 p-6 bg-pink-100 z-20 transform ${Object.keys(cart).length !== 0 ? 'translate-x-0' : 'translate-x-full'} transition-transform`}>
                 <h2 className="text-xl font-bold text-center">Your Cart</h2>
                 <span onClick={togglecart} className="top-2 right-2 absolute cursor-pointer text-3xl text-pink-800"><AiFillCloseCircle /></span>
                 <ol className='list-decimal space-y-4 mt-3'>
@@ -59,25 +61,6 @@ const Navbar = (props) => {
                             )
                         })
                     }
-
-                    {/* <li>
-                        <div className="ietm flex">
-                            <div className='w-2/3 text-left px-1 text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex  items-center justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="ietm flex">
-                            <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex  items-center justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="ietm flex">
-                            <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>T-shirts- Wear the code : </div>
-                            <div className='w-1/3 font-bold flex items-center  justify-center' ><AiOutlineMinusCircle className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> 1 <AiOutlinePlusCircle className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
-                        </div>
-                    </li> */}
                 </ol>
                 <div className='text-center'>
                     <span className="total mt-6 font-bold">Subtotal:&nbsp;&nbsp;{subtotal}</span>

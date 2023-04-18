@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -8,5 +8,5 @@ const UserSchema = new Schema({
 }, { timestamps: true })
 // createdAt: a date representing when this document was created
 // updatedAt: a date representing when this document was last updated
-
-export default mongoose.model('user', UserSchema);
+mongoose.models={};
+module.exports=mongoose.model('user', UserSchema);

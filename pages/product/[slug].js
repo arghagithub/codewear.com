@@ -1,9 +1,10 @@
+import Product from '@/models/Product';
 import { useRouter } from 'next/router'
 import { useState } from 'react';
+import mongoose from 'mongoose';
 
-const Post = (props) => {
-  const {addtocart}=props;
-  const router = useRouter()
+const Post = ({ addtocart, product, variants }) => {
+  const router = useRouter();
   const { slug } = router.query;
   const [pin, setPin] = useState();
   const [service, setService] = useState();
@@ -18,9 +19,17 @@ const Post = (props) => {
     }
   }
 
+  const refreshvariant=(newcolor,newsize)=>{
+    let url=`http://localhost:3000/product/${variants[newcolor][newsize]['slug']}`;
+    window.location.href=url;
+  }
+
+  const [color, setColor] = useState(product.color);
+  const [size, setSize] = useState(product.size);
   const changepin = (e) => {
     setPin(e.target.value);
   }
+
   return <>
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-14 mx-auto">
@@ -70,18 +79,23 @@ const Post = (props) => {
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
               <div className="flex">
                 <span className="mr-3">Color</span>
-                <button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none" />
-                <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none" />
-                <button className="border-2 border-gray-300 ml-1 bg-pink-500 rounded-full w-6 h-6 focus:outline-none" />
+                {Object.keys(variants).includes('Red') && Object.keys(variants['Red']).includes(size) &&  <button onClick={()=>{refreshvariant('Red',size)}}  className={`border-2 ml-1 bg-red-600 rounded-full w-6 h-6 focus:outline-none ${color==='Red'?'border-black':'border-gray-500'}`} />}
+                {Object.keys(variants).includes('Green')  && Object.keys(variants['Green']).includes(size) && < button onClick={()=>{refreshvariant('Green',size)}}  className={`border-2 ml-1 bg-green-600 rounded-full w-6 h-6 focus:outline-none ${color==='Green'?'border-black':'border-gray-500'}`} />}
+                {Object.keys(variants).includes('Purple') && Object.keys(variants['Purple']).includes(size) &&  < button  onClick={()=>{refreshvariant('Purple',size)}} className={`border-2 ml-1 bg-purple-600 rounded-full w-6 h-6 focus:outline-none ${color==='Purple'?'border-black':'border-gray-500'}`} />}
+                {Object.keys(variants).includes('Pink') && Object.keys(variants['Pink']).includes(size) &&  <button  onClick={()=>{refreshvariant('Pink',size)}} className={`border-2 ml-1 bg-pink-600 rounded-full w-6 h-6 focus:outline-none ${color==='Pink'?'border-black':'border-gray-500'}`} />}
+                {Object.keys(variants).includes('Yellow') && Object.keys(variants['Yellow']).includes(size) &&  < button onClick={()=>{refreshvariant('Yellow',size)}}  className={`border-2 ml-1 bg-yellow-600 rounded-full w-6 h-6 focus:outline-none ${color==='Yellow'?'border-black':'border-gray-500'}`} />}
+                {Object.keys(variants).includes('Black') && Object.keys(variants['Black']).includes(size) &&  < button  onClick={()=>{refreshvariant('Black',size)}} className={`border-2 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none ${color==='Black'?'border-black':'border-gray-500'}`} />}
               </div>
               <div className="flex ml-6 items-center">
                 <span className="mr-3">Size</span>
                 <div className="relative">
-                  <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10">
-                    <option>SM</option>
-                    <option>M</option>
-                    <option>L</option>
-                    <option>XL</option>
+                  <select value={size} onChange={(e)=>{refreshvariant(color,e.target.value)}} className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10">
+                    { Object.keys(variants[color]).includes('S') && <option value={'S'} >S</option>}
+                    { Object.keys(variants[color]).includes('M') && <option value={'M'} >M</option>}
+                    { Object.keys(variants[color]).includes('L') && <option value={'L'} >L</option>}
+                    { Object.keys(variants[color]).includes('XL') && <option value={'XL'} >XL</option>}
+                    { Object.keys(variants[color]).includes('XXL') && <option value={'XXL'} >XXL</option>}
+                    { Object.keys(variants[color]).includes('3XL') && <option value={'3XL'} >3XL</option>}
                   </select>
                   <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-4 h-4" viewBox="0 0 24 24">
@@ -96,7 +110,7 @@ const Post = (props) => {
             </div>
             <div className="flex">
               <button className="flex items-center ml-8 text-white bg-pink-500 border-0 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded text-sm ">Buy now</button>
-              <button onClick={()=>{addtocart(slug,1,499,"T-shirts",'XL','Red')}} className="flex items-center ml-4 text-white bg-pink-500 border-0 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded  text-sm">Add to cart</button>
+              <button onClick={() => { addtocart(slug, 1, 499, "T-shirts", 'XL', 'Red') }} className="flex items-center ml-4 text-white bg-pink-500 border-0 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded  text-sm">Add to cart</button>
               <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-5 h-5" viewBox="0 0 24 24">
                   <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
@@ -119,6 +133,28 @@ const Post = (props) => {
     </section >
 
   </>
+}
+
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) { // if there is already a connection
+    await mongoose.connect(process.env.MONGO_URI);
+
+  }
+  let product = await Product.findOne({ slug: context.query.slug });//sob product peye jabo
+  let variants = await Product.find({ title: product.title });
+  let colorsizeslug = {}; // {red:{xl:{'wear-the-code-xl'}}}
+  for (let item of variants) {
+    if (Object.keys(colorsizeslug).includes(item.color)) {
+      colorsizeslug[item.color][item.size] = { slug: item.slug };
+    }
+    else {
+      colorsizeslug[item.color] = {};
+      colorsizeslug[item.color][item.size] = { slug: item.slug };
+    }
+  }
+  return {
+    props: { product: JSON.parse(JSON.stringify(product)), variants: JSON.parse(JSON.stringify(colorsizeslug)) }, // will be passed to the page component as props
+  }
 }
 
 export default Post

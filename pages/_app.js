@@ -12,7 +12,6 @@ export default function App({ Component, pageProps }) {
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
-    console.log("Hey, I am using _app.js");
     try {
       if (localStorage.getItem('cart')) {
         setCart(JSON.parse(localStorage.getItem('cart')));

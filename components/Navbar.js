@@ -65,9 +65,9 @@ const Navbar = (props) => {
                 <div className='text-center'>
                     <span className="total mt-6 font-bold">Subtotal:&nbsp;&nbsp;{subtotal}</span>
                 </div>
-                <div className="flex justify-center ml-5">
-                    <Link style={{ textDecoration: 'none' }} href={'/Check'}><button className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='mt-[4px] mr-[6px]' />Checkout</button></Link>
-                    <button onClick={clearcart} className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <AiOutlineClear className='mr-[6px] mt-[4px]' />Clear cart</button>
+                <div className="justify-center ml-5">
+                    <Link style={{ textDecoration: 'none' }} href={'/Check'}><button className="flex mx-auto mt-3 mx-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <MdOutlineShoppingCartCheckout className='mt-[4px] mr-[6px]' />Checkout</button></Link>
+                    <button onClick={clearcart} className="flex mx-auto mt-3 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-md"> <AiOutlineClear className='mr-[2px] mt-[4px]' />Clear cart</button>
                 </div>
             </div>
 

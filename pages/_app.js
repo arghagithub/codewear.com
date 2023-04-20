@@ -6,7 +6,8 @@ import Head from "next/head";
 import { useRouter } from 'next/router';
 import Script from 'next/script'
 import { useEffect, useState } from 'react';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState({});// It is an object
@@ -35,6 +36,16 @@ export default function App({ Component, pageProps }) {
     }
     setCart(newcart);
     savecart(newcart);
+    toast.info('Item is added to cart!', {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
   }
 
   const removefromcart = (itemcode, qty, price, name, size, variant) => {

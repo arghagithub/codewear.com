@@ -2,8 +2,10 @@ import Product from '@/models/Product';
 import { useRouter } from 'next/router'
 import { useState } from 'react';
 import mongoose from 'mongoose';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Post = ({buynow, addtocart, product, variants }) => {
+const Post = ({ buynow, addtocart, product, variants }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [pin, setPin] = useState();
@@ -13,9 +15,29 @@ const Post = ({buynow, addtocart, product, variants }) => {
     let pincode = await pins.json();
     if (pincode.includes(parseInt(pin))) {
       setService(true);
+      toast.success('This pincode is serviceable', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
     else {
       setService(false);
+      toast.error("Sorry,can't deliver to this pincode ", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   }
 
@@ -32,6 +54,17 @@ const Post = ({buynow, addtocart, product, variants }) => {
 
   return <>
     <section className="text-gray-600 body-font overflow-hidden">
+      <ToastContainer position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="container px-5 py-14 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto px-6 object-cover object-top rounded" src={product.img} />
@@ -109,7 +142,7 @@ const Post = ({buynow, addtocart, product, variants }) => {
               <span className="title-font font-medium text-gray-900 text-lg md:text-2xl">₹499.00</span>
             </div>
             <div className="flex">
-              <button onClick={()=>{buynow(slug, 1, 499, product.title, size, color)}} className="flex items-center ml-8 text-white bg-pink-500 border-0 px-3 py-2 md:py-3 md:px-6 focus:outline-none hover:bg-pink-600 rounded text-sm md:text-md ">Buy now</button>
+              <button onClick={() => { buynow(slug, 1, 499, product.title, size, color) }} className="flex items-center ml-8 text-white bg-pink-500 border-0 px-3 py-2 md:py-3 md:px-6 focus:outline-none hover:bg-pink-600 rounded text-sm md:text-md ">Buy now</button>
               <button onClick={() => { addtocart(slug, 1, 499, product.title, size, color) }} className="flex items-center ml-4 text-white bg-pink-500 border-0 px-3 py-1 md:py-3 md:px-6 focus:outline-none hover:bg-pink-600 rounded  text-sm md:text-md">Add to cart</button>
               {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-5 h-5" viewBox="0 0 24 24">
@@ -121,12 +154,12 @@ const Post = ({buynow, addtocart, product, variants }) => {
               <input type="text" className=' text-center border-2 rounded-md' onChange={changepin} placeholder='enter your pincode' />
               <button onClick={checkservice} type="button" className="text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 text-md rounded-md">Check</button>
             </div>
-            {(!service && service != null) && <div div className='text-red-500 text-sm mt-3'>
+            {/* {(!service && service != null) && <div div className='text-red-500 text-sm mt-3'>
               Sorry! We can not deliver to this pincode
             </div>}
             {(service && service != null) && <div className='text-green-600 text-sm mt-3'>
               Yahh! This pincode is serviceable to us
-            </div>}
+            </div>} */}
           </div>
         </div>
       </div>

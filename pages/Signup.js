@@ -3,7 +3,9 @@ import { HiLockClosed } from 'react-icons/hi';
 import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
 const Signup = () => {
+  const router=useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,21 +40,38 @@ const Signup = () => {
 
         const result = await response.json();
         console.log("Success:", result);
-        toast.success('Account is created successfully', {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
+        if (result.success) {
+          toast.success('Account is created successfully', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setTimeout(() => {
+            router.push('http://localhost:3000/Login');
+          }, 2000);
+        }
+        else {
+          toast.error("Sorry,something went wrong", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
       } catch (error) {
         console.error("Error:", error);
         toast.error("Sorry,something went wrong", {
           position: "top-center",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -73,7 +92,7 @@ const Signup = () => {
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       <ToastContainer position="top-center"
-        autoClose={3000}
+        autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -160,7 +179,6 @@ const Signup = () => {
                 name="cpassword"
                 value={cpassword}
                 type="password"
-                autoComplete="current-password"
                 required
                 className="relative block w-full rounded-md border-0 p-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
                 placeholder="Confirm your Password"

@@ -1,9 +1,97 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { HiLockClosed } from 'react-icons/hi';
 import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/router';
 const Login = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const onchange = (e) => {
+    if (e.target.name === 'email') {
+      setEmail(e.target.value);
+    }
+    else if (e.target.name === 'password') {
+      setPassword(e.target.value);
+    }
+  }
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    async function postJSON(data) {
+      try {
+        const response = await fetch("http://localhost:3000/api/login", {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        console.log("Success:", result);
+        if (result.success) {
+          toast.success('successfully logged in', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setTimeout(() => {
+            router.push('http://localhost:3000');
+          }, 2000);
+        }
+        else {
+          toast.error(result.error, {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        toast.error("Sorry,something went wrong", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    }
+
+    const data = { email: email, password: password };
+    postJSON(data);
+    setTimeout(() => {
+      setEmail(''); setPassword('');
+    }, 1000);
+
+  }
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <ToastContainer position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="w-full max-w-md space-y-8">
         <div>
           <img
@@ -16,12 +104,12 @@ const Login = () => {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <Link href="/Signup"  className="text-decoration-none font-medium text-pink-600 hover:text-pink-500">
+            <Link href="/Signup" className="text-decoration-none font-medium text-pink-600 hover:text-pink-500">
               Create a new account
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form onSubmit={handlesubmit} className="mt-8 space-y-6" action="#" method="POST">
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="space-y-4 rounded-md">
             <div>
@@ -30,7 +118,9 @@ const Login = () => {
               </label>
               <input
                 id="email-address"
+                onChange={onchange}
                 name="email"
+                value={email}
                 type="email"
                 autoComplete="email"
                 required
@@ -43,8 +133,10 @@ const Login = () => {
                 Password
               </label>
               <input
+                onChange={onchange}
                 id="password"
                 name="password"
+                value={password}
                 type="password"
                 autoComplete="current-password"
                 required
@@ -82,7 +174,7 @@ const Login = () => {
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <HiLockClosed className="h-5 w-5 text-pink-500 group-hover:text-pink-400" aria-hidden="true" />
               </span>
-               Login
+              Login
             </button>
           </div>
         </form>

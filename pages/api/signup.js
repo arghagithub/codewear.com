@@ -7,14 +7,14 @@ const handler = async (req, res) => {
         try {
             let user = new User(req.body);
             await user.save();
-            res.status(200).json({ success: "Signup successful" });
+            res.status(200).json({success:true, message: "Signup successful" });
 
         } catch (error) {
-            res.status(500).json({error:error});
+            res.status(500).json({success:false,error:error});
         }
     }
     else {
-        res.status(400).json({ error: "Internal server error" });
+        res.status(400).json({success:false, error: "Internal server error" });
     }
 }
 

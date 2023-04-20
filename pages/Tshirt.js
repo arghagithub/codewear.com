@@ -8,7 +8,9 @@ const Tshirt = ({ products }) => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -m-4 justify-center">
-            {Object.keys(products).map((item, index) => {
+            {Object.keys(products).length === 0 && <p>Sorry, all hoodies collections are out of stock. New stock is coming soon. Stay tuned</p>}
+
+            {(Object.keys(products).length !== 0) && Object.keys(products).map((item, index) => {
               return (
                 <div key={index} className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-3">
                   <span className="block relative rounded overflow-hidden">

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react';
 import mongoose from 'mongoose';
 
-const Post = ({ addtocart, product, variants }) => {
+const Post = ({buynow, addtocart, product, variants }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [pin, setPin] = useState();
@@ -109,7 +109,7 @@ const Post = ({ addtocart, product, variants }) => {
               <span className="title-font font-medium text-gray-900 text-lg md:text-2xl">₹499.00</span>
             </div>
             <div className="flex">
-              <button className="flex items-center ml-8 text-white bg-pink-500 border-0 px-3 py-2 md:py-3 md:px-6 focus:outline-none hover:bg-pink-600 rounded text-sm md:text-md ">Buy now</button>
+              <button onClick={()=>{buynow(slug, 1, 499, product.title, size, color)}} className="flex items-center ml-8 text-white bg-pink-500 border-0 px-3 py-2 md:py-3 md:px-6 focus:outline-none hover:bg-pink-600 rounded text-sm md:text-md ">Buy now</button>
               <button onClick={() => { addtocart(slug, 1, 499, product.title, size, color) }} className="flex items-center ml-4 text-white bg-pink-500 border-0 px-3 py-1 md:py-3 md:px-6 focus:outline-none hover:bg-pink-600 rounded  text-sm md:text-md">Add to cart</button>
               {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-5 h-5" viewBox="0 0 24 24">

@@ -31,10 +31,10 @@ const Navbar = (props) => {
             </div>
             <div className="navbar mt-3">
                 <ul className="flex font-bold space-x-8">
-                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Tshirt'}><li className='text-pink-600 text-sm md:text-md'>T-shirts</li></Link>
-                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Hoodies'}><li className='text-pink-600 text-sm md:text-md'>Hoodies</li></Link>
-                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Stickers'}><li className='text-pink-600 text-sm md:text-md'>Stickers</li></Link>
-                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Mugs'}><li className='text-pink-600 text-sm md:text-md'>Mugs</li></Link>
+                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Tshirt'}><li className='text-pink-600 text-sm md:text-md hover:text-black'>T-shirts</li></Link>
+                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Hoodies'}><li className='text-pink-600 text-sm md:text-md hover:text-black'>Hoodies</li></Link>
+                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Stickers'}><li className='text-pink-600 text-sm md:text-md hover:text-black'>Stickers</li></Link>
+                    <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Mugs'}><li className='text-pink-600 text-sm md:text-md hover:text-black'>Mugs</li></Link>
                 </ul>
             </div>
             <div className="cart mx-1 mt-3 absolute top-0 right-1">
@@ -54,7 +54,7 @@ const Navbar = (props) => {
                             return (
                                 <li key={index}>
                                     <div className="ietm flex justify-center">
-                                        <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>{cart[item].name} : </div>
+                                        <div className='w-2/3 text-left px-1  text-pink-800 font-bold'>{cart[item].name} : {cart[item].size} / {cart[item].variant}</div>
                                         <div className='w-1/3 font-bold flex  items-center  justify-center' ><AiOutlineMinusCircle onClick={() => { removefromcart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className='text-2xl mx-2 cursor-pointer text-pink-500 font-bold' /> {cart[item].qty} <AiOutlinePlusCircle onClick={() => { addtocart(item, 1, cart[item].price, cart[item].name, cart[item].size, cart[item].variant) }} className=' cursor-pointer text-pink-500 fint-bold text-2xl ml-2' /></div>
                                     </div>
                                 </li>

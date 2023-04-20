@@ -12,77 +12,78 @@ const Footer = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-10 h-10 text-white p-2 bg-pink-500 rounded-full" viewBox="0 0 24 24">
                                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                                 </svg>
-                                <span className="ml-3 text-xl text-center">CodesWear</span>
+                                <span className="ml-7 text-xl">CodesWear</span>
                             </span>
                         </Link>
-                        <p className="mt-2 text-sm text-gray-500 text-center">Air plant banjo lyft occupy retro adaptogen indego</p>
+                        <p className="text-md text-gray-500">Wear the &lt;code/&gt;</p>
+                        <p className='text-md text-gray-500'>Premium tshirts, hoodies and apparals</p>
                     </div>
                     <div className="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">Shop</h2>
                             <nav className="list-none mb-10">
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                                    <Link href={'/Tshirt'} style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">T-shirts</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                                    <Link href={'/Hoodies'} style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Hoodies</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+                                    <Link href={'/Stickers'} style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Stickers</Link>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                                    <Link href={'/Mugs'} style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Mugs</Link>
                                 </li>
                             </nav>
                         </div>
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">Help</h2>
                             <nav className="list-none mb-10">
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Payments</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Shipping</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Cancellation & Returns</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">FAQ</a>
                                 </li>
                             </nav>
                         </div>
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">Consumer policy</h2>
                             <nav className="list-none mb-10">
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Return policy</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Security</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Term of use</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Privacy</a>
                                 </li>
                             </nav>
                         </div>
                         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+                            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">Social</h2>
                             <nav className="list-none mb-10">
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Facebook</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Twitter</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Instagram</a>
                                 </li>
                                 <li>
-                                    <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                                    <a style={{textDecoration:'none'}} className="text-gray-600 hover:text-gray-800">Youtube</a>
                                 </li>
                             </nav>
                         </div>

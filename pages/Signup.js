@@ -53,7 +53,7 @@ const Signup = () => {
           });
           setTimeout(() => {
             router.push('http://localhost:3000/Login');
-          }, 2000);
+          }, 1000);
         }
         else {
           toast.error("Sorry,something went wrong", {
@@ -82,7 +82,7 @@ const Signup = () => {
       }
     }
 
-    const data = { name: name, email: email, password: password };
+    const data = { name: name, email: email, password:password };
     postJSON(data);
 
     setTimeout(() => {

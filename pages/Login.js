@@ -43,7 +43,7 @@ const Login = () => {
           });
           setTimeout(() => {
             router.push('http://localhost:3000');
-          }, 2000);
+          }, 1000);
         }
         else {
           toast.error(result.error, {

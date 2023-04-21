@@ -39,7 +39,7 @@ const Navbar = (props) => {
                 </ul>
             </div>
             <div className="cart mx-1 mt-3 absolute top-0 right-0 flex items-center justify-center">
-                {dropdown && <div onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className='bg-pink-300 w-36 absolute top-8 right-8 rounded-md'>
+                {dropdown && <div onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className='bg-pink-50 w-36 absolute top-8 right-8 rounded-md'>
                     <ul>
                         <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Myaccount'}><li className='py-2 hover:font-bold'>My account</li></Link>
                         <li onClick={logout} className='ml-4 pb-2 hover:font-bold cursor-pointer'>Logout</li>

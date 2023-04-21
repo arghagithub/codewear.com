@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HiLockClosed } from 'react-icons/hi';
 import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Forgot = () => {
+    useEffect(() => {
+        if (localStorage.getItem('logintoken')) {
+            router.push('/');
+            toast.warn('You are already logged in', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+        }
+    }, [])
     return (
         <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+            <ToastContainer position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
             <div className="w-full max-w-md space-y-8">
                 <div>
                     <img
@@ -40,7 +68,7 @@ const Forgot = () => {
                         </div>
                     </div>
 
-                    
+
 
                     <div>
                         <button
@@ -50,7 +78,7 @@ const Forgot = () => {
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <HiLockClosed className="h-5 w-5 text-pink-500 group-hover:text-pink-400" aria-hidden="true" />
                             </span>
-                             Continue
+                            Continue
                         </button>
                     </div>
                 </form>

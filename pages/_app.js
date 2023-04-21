@@ -6,11 +6,12 @@ import Head from "next/head";
 import { useRouter } from 'next/router';
 import Script from 'next/script'
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingBar from 'react-top-loading-bar'
 
 export default function App({ Component, pageProps }) {
+  const [progress,setProgress]=useState(0);
   const [cart, setCart] = useState({});// It is an object
   const [subtotal, setSubtotal] = useState(0);
   const [user, setUser] = useState({ value: null });
@@ -18,7 +19,12 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('useEffect is running');
+    router.events.on('routeChangeStart',()=>{
+      setProgress(40);
+    })
+    router.events.on('routeChangeComplete',()=>{
+      setProgress(100);
+    })
     try {
       if (localStorage.getItem('cart')) {
         setCart(JSON.parse(localStorage.getItem('cart')));
@@ -113,6 +119,13 @@ export default function App({ Component, pageProps }) {
     </Head>
     <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></Script>
     <Navbar logout={logout} key={key} user={user} cart={cart} addtocart={addtocart} removefromcart={removefromcart} savecart={savecart} clearcart={clearcart} subtotal={subtotal} />
+    <LoadingBar
+      color='red'
+      height={4}
+      waitingTime={400}
+      progress={progress}
+      onLoaderFinished={() => setProgress(0)}
+    />
     <ToastContainer position="top-center"
       autoClose={1000}
       hideProgressBar={false}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HiLockClosed } from 'react-icons/hi';
 import Link from 'next/link';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +8,21 @@ const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem('logintoken')) {
+      router.push('/');
+      toast.warn('You are already logged in', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  }, [])
   const onchange = (e) => {
     if (e.target.name === 'email') {
       setEmail(e.target.value);
@@ -31,7 +46,7 @@ const Login = () => {
         const result = await response.json();
         console.log("Success:", result);
         if (result.success) {
-          localStorage.setItem('logintoken',result.token);
+          localStorage.setItem('logintoken', result.token);
           toast.success('successfully logged in', {
             position: "top-center",
             autoClose: 1000,
@@ -111,7 +126,7 @@ const Login = () => {
           </p>
         </div>
         <form onSubmit={handlesubmit} className="mt-8 space-y-6" action="#" method="POST">
-          <input type="hidden" name="remember" defaultValue="true" />
+          {/* <input type="hidden" name="remember" defaultValue="true" /> */}
           <div className="space-y-4 rounded-md">
             <div>
               <label htmlFor="email-address" className="sr-only">
@@ -148,7 +163,7 @@ const Login = () => {
           </div>
 
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <input
                 id="remember-me"
                 name="remember-me"
@@ -158,7 +173,7 @@ const Login = () => {
               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                 Remember me
               </label>
-            </div>
+            </div> */}
 
             <div className="text-sm">
               <Link href="/Forgot" className="font-medium text-decoration-none text-pink-600 hover:text-pink-500">

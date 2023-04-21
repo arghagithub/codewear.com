@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 const Check = (props) => {
   const { cart, addtocart, removefromcart,subtotal } = props;
-  console.log(cart);
   return (
     <div className='container px-2 sm:m-auto'>
       <h1 className='font-bold text-center my-8 text-3xl text-pink-600' >Checkout</h1>

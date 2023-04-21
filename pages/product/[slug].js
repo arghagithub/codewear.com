@@ -1,6 +1,6 @@
-import Product from '@/models/Product';
 import { useRouter } from 'next/router'
 import { useState } from 'react';
+import Product from '@/models/Product';
 import mongoose from 'mongoose';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

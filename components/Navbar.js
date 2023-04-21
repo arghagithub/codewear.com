@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiFillCloseCircle, AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineClear } from 'react-icons/ai';
@@ -7,7 +7,8 @@ import { MdOutlineShoppingCartCheckout, MdAccountCircle } from 'react-icons/md';
 
 
 const Navbar = (props) => {
-    const { cart, addtocart, removefromcart, clearcart, subtotal } = props;
+    const { logout, user, cart, addtocart, removefromcart, clearcart, subtotal } = props;
+    const [dropdown, setDropdown] = useState(false);
     const ref = useRef();
     const togglecart = () => {
         if (ref.current.classList.contains('translate-x-full')) {
@@ -37,8 +38,16 @@ const Navbar = (props) => {
                     <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Mugs'}><li className='text-pink-600 text-sm md:text-md hover:text-black'>Mugs</li></Link>
                 </ul>
             </div>
-            <div className="cart mx-1 mt-3 absolute top-0 right-1">
-                <Link href={'/Login'}><button type="button" className="text-xl mx-2 md:text-4xl text-black"><MdAccountCircle /></button></Link>
+            <div className="cart mx-1 mt-3 absolute top-0 right-0 flex items-center justify-center">
+                {dropdown && <div onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} className='bg-pink-300 w-36 absolute top-8 right-8 rounded-md'>
+                    <ul>
+                        <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Myaccount'}><li className='py-2 hover:font-bold'>My account</li></Link>
+                        <li onClick={logout} className='ml-4 pb-2 hover:font-bold cursor-pointer'>Logout</li>
+                        <Link style={{ textDecoration: 'none', color: 'black' }} href={'/Orders'}><li className='ml-4 hover:font-bold'>Orders</li></Link>
+                    </ul>
+                </div>}
+                {user.value && <button onMouseOver={() => { setDropdown(true) }} onMouseLeave={() => { setDropdown(false) }} type="button" className="text-xl mx-2 md:text-4xl text-black"><MdAccountCircle /></button>}
+                {!user.value && <Link href={'/Login'}> <button className='text-white bg-pink-600 rounded-md text-[10px] py-1 px-2 m-1 md:text-[15px] md:p-3 md:mx-2 md:font-bold'>Signin</button> </Link>}
                 <button onClick={togglecart} type="button" className="text-xl mx-2 md:text-4xl"><AiOutlineShoppingCart /></button>
             </div>
 

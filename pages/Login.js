@@ -35,7 +35,7 @@ const Login = () => {
     e.preventDefault();
     async function postJSON(data) {
       try {
-        const response = await fetch("http://localhost:3000/api/login", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
           method: "POST", // or 'PUT'
           headers: {
             "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const Login = () => {
             theme: "colored",
           });
           setTimeout(() => {
-            router.push('http://localhost:3000');
+            router.push(process.env.NEXT_PUBLIC_HOST);
           }, 1000);
         }
         else {

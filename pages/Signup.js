@@ -45,7 +45,7 @@ const Signup = () => {
     e.preventDefault();
     async function postJSON(data) {
       try {
-        const response = await fetch("http://localhost:3000/api/signup", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
           method: "POST", // or 'PUT'
           headers: {
             "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const Signup = () => {
             theme: "colored",
           });
           setTimeout(() => {
-            router.push('http://localhost:3000/Login');
+            router.push(`${process.env.NEXT_PUBLIC_HOST}/Login`);
           }, 1000);
         }
         else {

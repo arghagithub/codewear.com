@@ -31,6 +31,7 @@ const Login = () => {
         const result = await response.json();
         console.log("Success:", result);
         if (result.success) {
+          localStorage.setItem('logintoken',result.token);
           toast.success('successfully logged in', {
             position: "top-center",
             autoClose: 1000,
